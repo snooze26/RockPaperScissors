@@ -6,3 +6,6 @@ function getComputerChoice(){
 
 const choice = getComputerChoice();
 console.log(choice);
+
+userchoice = prompt("Rock, Paper, Scissors?")
+console.log(userchoice);
