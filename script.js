@@ -41,7 +41,8 @@ function playRound(humanChoice, computerChoice){
         computerScore++
     }
 
-
+    console.log(`My score: ${humanScore}`);
+    console.log(`Computer score: ${computerScore}`);
 }
 
 
@@ -54,6 +55,7 @@ function playGame(){
 
     console.log(`My score: ${humanScore}`);
     console.log(`Computer score: ${computerScore}`);
+
 }
 
 playGame();
