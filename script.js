@@ -2,10 +2,10 @@ function getComputerChoice(){
     const choices = ["rock", "paper", "scissors"];
     const randomChoice = Math.floor(Math.random() * choices.length);
     return choices[randomChoice]; 
+
+    console.log(choices);
 }
 
-const choice = getComputerChoice();
-console.log(choice);
 
 function getHumanChoice(){
 let userchoice = prompt("Rock, Paper, Scissors?")
@@ -21,37 +21,39 @@ let computerScore = 0;
 
 function playRound(humanChoice, computerChoice){
 
-    humanChoice = getHumanChoice();
-    computerChoice = getComputerChoice();
-
-    if(humanChoice === 'rock' && computerChoice === 'scissors'){
-        console.log('Rock beats scissors'); 
+    if(humanChoice === computerChoice){
+        console.log ('its a tie')
+    }else if(humanChoice === 'rock' && computerChoice === 'scissors'){
+        console.log(`${humanChoice} beats ${computerChoice}`); 
 
         humanScore++
     }else if(humanChoice === 'paper' && computerChoice === 'rock'){
-        console.log('Paper beats rock'); 
+        console.log(`${humanChoice} beats ${computerChoice}`); 
 
         humanScore++
 
     }else if(humanChoice === 'scissors' && computerChoice === 'paper'){
-        console.log('Scissors beats paper'); 
+        console.log(`${humanChoice} beats ${computerChoice}`); 
 
         humanScore++
     }else{
+        console.log(`${computerChoice} beats ${humanChoice}`)
         computerScore++
     }
-   
-    console.log(humanScore);
-    console.log(computerScore)
+
+
 }
 
 
 function playGame(){
-    playRound();
-    playRound();
-    playRound();
-    playRound();
-    playRound();
+    for(let i = 0; i < 5; i++){
+        const humanChoice = getHumanChoice();
+        const computerChoice = getComputerChoice();
+        playRound(humanChoice, computerChoice);
+    }
+
+    console.log(`My score: ${humanScore}`);
+    console.log(`Computer score: ${computerScore}`);
 }
 
 playGame();
