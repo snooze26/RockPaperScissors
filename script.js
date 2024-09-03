@@ -1,3 +1,20 @@
+
+
+const rockBtn = document.querySelector("#rock"); 
+const paperBtn = document.querySelector("#paper"); 
+const scissorsBtn = document.querySelector("#scissors");
+const results = document.querySelector("#results");
+
+const resultsText = document.createElement("p");
+const humanScoreLog = document.createElement("p");
+const computerScoreLog = document.createElement("p");
+
+let humanScore = 0;
+let computerScore = 0; 
+
+
+
+
 function getComputerChoice(){
     const choices = ["rock", "paper", "scissors"];
     const randomChoice = Math.floor(Math.random() * choices.length);
@@ -7,45 +24,54 @@ function getComputerChoice(){
 }
 
 
-function getHumanChoice(){
-let userchoice = prompt("Rock, Paper, Scissors?")
-let userInput = userchoice.toLowerCase();
-
-console.log(userInput);
-return userInput;
-
-}
-
-let humanScore = 0;
-let computerScore = 0; 
-
-function playRound(humanChoice, computerChoice){
+function playRound(humanChoice){
+    const computerChoice = getComputerChoice();
 
     if(humanChoice === computerChoice){
-        console.log ('its a tie')
-    }else if(humanChoice === 'rock' && computerChoice === 'scissors'){
-        console.log(`${humanChoice} beats ${computerChoice}`); 
+
+        resultsText.textContent = "TIE!!";
+        results.appendChild(resultsText);
+
+    }else if(
+        (humanChoice === 'rock' && computerChoice === 'scissors') ||
+        (humanChoice === 'paper' && computerChoice === 'rock') ||
+        (humanChoice === 'scissors' && computerChoice === 'paper')){
 
         humanScore++
-    }else if(humanChoice === 'paper' && computerChoice === 'rock'){
-        console.log(`${humanChoice} beats ${computerChoice}`); 
+        resultsText.textContent = `${humanChoice} beats ${computerChoice}`;
+        results.appendChild(resultsText);
+ 
 
-        humanScore++
-
-    }else if(humanChoice === 'scissors' && computerChoice === 'paper'){
-        console.log(`${humanChoice} beats ${computerChoice}`); 
-
-        humanScore++
     }else{
-        console.log(`${computerChoice} beats ${humanChoice}`)
+
         computerScore++
+        resultsText.textContent = `${computerChoice} beats ${humanChoice}`;
+        results.appendChild(resultsText);
+        
     }
 
-    console.log(`My score: ${humanScore}`);
-    console.log(`Computer score: ${computerScore}`);
+    humanScoreLog.textContent = `My score: ${humanScore}`;
+    computerScoreLog.textContent = `Computer score: ${computerScore}`;
+    
+    results.appendChild(humanScoreLog);
+    results.appendChild(computerScoreLog);
+
 }
 
 
+
+
+rockBtn.addEventListener("click", () =>{
+    playRound("rock");
+});
+paperBtn.addEventListener("click", () =>{
+    playRound("paper");
+});
+scissorsBtn.addEventListener("click", () =>{
+    playRound("scissors");
+});
+
+/*
 function playGame(){
     for(let i = 0; i < 5; i++){
         const humanChoice = getHumanChoice();
@@ -59,3 +85,4 @@ function playGame(){
 }
 
 playGame();
+*/
